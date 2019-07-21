@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Layout from '../hocs/layout'
 
 import CategorySelector from '../components/CategorySelector'
+import TagsSelector from '../components/TagsSelector/TagsGql'
 
 import { CATEGORIES_MAP } from '../utils/consts'
 
@@ -18,10 +19,11 @@ class IndexPage extends Component {
 
     changeCategoryState = category => this.setState({ category })
 
-    changeTagsState = tags => this.setState({ tags })
+    changeTagsState = activeTags => this.setState({ activeTags })
 
     render () {
         const { category } = this.state
+
         return (
             <>
                 <Layout
@@ -31,6 +33,10 @@ class IndexPage extends Component {
                     <CategorySelector
                         category={category}
                         changeCategory={this.changeCategoryState}
+                    />
+                    <TagsSelector
+                        category={category}
+                        changeTagsState={this.changeTagsState}
                     />
                 </Layout>
             </>
