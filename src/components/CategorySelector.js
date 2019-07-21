@@ -7,17 +7,18 @@ import { CATEGORIES_MAP } from '../utils/consts'
 const categorySelector = ({ category, changeCategory }) => {
     const categories = Object.values(CATEGORIES_MAP)
     return (
-        <PageSection title='Categories'>
+        <PageSection title='Kategorie'>
             <div className='category-selector'>
-                {categories.map(({ cid, title }) => (
-                    <SelectableTag
+                {categories.map(({ cid, title }) => {
+                    const active = cid === category
+                    return <SelectableTag
                         key={cid}
                         title={title}
-                        active={cid === category}
-                        onClick={() => changeCategory(cid)}
+                        active={active}
+                        onClick={() => !active && changeCategory(cid)}
                         modifiers='category'
                     />
-                ))}
+                })}
             </div>
         </PageSection>
     )

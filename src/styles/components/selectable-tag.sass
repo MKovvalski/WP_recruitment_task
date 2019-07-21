@@ -7,18 +7,32 @@
   background-color: $color-white
   cursor: pointer
   font-size: 18px
+  line-height: 1
   white-space: nowrap
   transition: color .3s, background-color .3s
-
-  &:hover
-    color: $color-white
-    background-color: $color-light-blue
 
   &--active
     color: $color-white
     background-color: $color-light-blue
 
-  &--category
+  &--category,
+  &--tags
     margin-right: 10px
     margin-bottom: 10px
 
+  &--apply
+    color: $color-white
+    background-color: $font-color-lighter-grey
+    border-color: $font-color-lighter-grey
+    margin-right: 10px
+
+  &--eraser
+    color: $color-white
+    background-color: $color-dark-red
+    border-color: $color-dark-red
+
++media-breakpoint-up(md)
+  .selectable-tag
+    &:hover
+      color: $color-white
+      background-color: $color-light-blue
