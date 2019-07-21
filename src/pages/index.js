@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Layout from '../hocs/layout'
 
+import CategorySelector from '../components/CategorySelector'
+
 import { CATEGORIES_MAP } from '../utils/consts'
 
 const PAGE_NAME = 'index'
@@ -19,13 +21,17 @@ class IndexPage extends Component {
     changeTagsState = tags => this.setState({ tags })
 
     render () {
+        const { category } = this.state
         return (
             <>
                 <Layout
                     toggleFilterMenu={this.toggleFilterMenuState}
                     pageName={PAGE_NAME}
                 >
-                    components go here
+                    <CategorySelector
+                        category={category}
+                        changeCategory={this.changeCategoryState}
+                    />
                 </Layout>
             </>
         )
