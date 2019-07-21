@@ -1,0 +1,9 @@
+=media-breakpoint-up($breakpoint)
+  @if map-has-key($breakpoints, $breakpoint)
+    @media (min-width: map-get($breakpoints, $breakpoint))
+      @content
+
+=media-breakpoint-down($breakpoint)
+  @if map-has-key($breakpoints, $breakpoint)
+    @media (max-width: map-get($breakpoints, $breakpoint))
+      @content
