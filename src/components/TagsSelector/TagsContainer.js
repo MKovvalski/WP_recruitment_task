@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
-
-import Loader from '../../components/Loader'
-import AsideControls from '../../components/AsideControls'
-import TagsSelector from './TagsSelector'
-import PageSection from '../PageSection'
+import TagsSelectorView from './TagsSelectorView'
 
 const removeSpaces = string => string.replace(/\s/g, '')
 
@@ -51,8 +47,6 @@ class TagsContainer extends Component {
         this.setTagArrayState(newTagsArray)
     }
 
-    manageLoadingState = state => this.props.loadingState === state
-
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.category !== this.props.category) {
             this.setTagArrayState([])
@@ -82,21 +76,13 @@ class TagsContainer extends Component {
         ]
 
         return (
-            <PageSection
-                title='Wybierz Tagi'
-                componentsAside={<AsideControls controlsArray={controls} />}
-            >
-                { this.manageLoadingState('loading') && <Loader />}
-                { this.manageLoadingState('no-tags') && <div className='error'>Ta kategoria nie posiada tagów</div>}
-                { this.manageLoadingState('failed') && <div className='error'>Coś poszło nie tak, spróbuj ponownie</div>}
-                { this.manageLoadingState('success') &&
-                <TagsSelector
-                    tagsArray={formatTags(articles)}
-                    activeTagsArray={tagsArray}
-                    toggleTag={this.toggleTagInArrayState}
-                />
-                }
-            </PageSection>
+            <TagsSelectorView
+                tagsArray={formatTags(articles)}
+                activeTagsArray={tagsArray}
+                toggleTag={this.toggleTagInArrayState}
+                controls={controls}
+                {...this.props}
+            />
         )
     }
 }
