@@ -1,7 +1,7 @@
 import React from 'react'
 import bemCx from 'bem-modifiers'
 
-const executeMethod = method => typeof method === 'function' && method()
+import { executeMethod } from '../utils/helpers'
 
 const selectableTag = ({ onClick, title, active, modifiers }) => (
     <div

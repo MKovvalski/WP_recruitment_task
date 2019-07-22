@@ -19,3 +19,5 @@ export const ROUTING_MAP = {
     article: '/article/:article_slug'
 }
 
+export const LINKEDIN_LINK = 'https://www.linkedin.com/in/mateusz-kowalski-62b758113/'
+

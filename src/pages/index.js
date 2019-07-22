@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import bemCx from 'bem-modifiers'
 import Layout from '../hocs/layout'
 
 import CategorySelector from '../components/CategorySelector'
 import TagsSelector from '../components/TagsSelector/TagsGql'
+import FilterSectionHeader from '../components/FilterSectionHeader'
 
 import { CATEGORIES_MAP } from '../utils/consts'
 
@@ -22,24 +24,30 @@ class IndexPage extends Component {
     changeTagsState = activeTags => this.setState({ activeTags })
 
     render () {
-        const { category } = this.state
+        const { category, filterMenuOpen: active } = this.state
 
         return (
-            <>
+            <div className='index-page'>
                 <Layout
                     toggleFilterMenu={this.toggleFilterMenuState}
                     pageName={PAGE_NAME}
                 >
-                    <CategorySelector
-                        category={category}
-                        changeCategory={this.changeCategoryState}
-                    />
-                    <TagsSelector
-                        category={category}
-                        changeTagsState={this.changeTagsState}
-                    />
+                    <div className={bemCx('index-page__filter-section', { active })}>
+                        <FilterSectionHeader
+                            closeFilters={this.toggleFilterMenuState}
+                        />
+                        <CategorySelector
+                            category={category}
+                            changeCategory={this.changeCategoryState}
+                        />
+                        <TagsSelector
+                            category={category}
+                            changeTagsState={this.changeTagsState}
+                            closeFilterMenu={this.toggleFilterMenuState}
+                        />
+                    </div>
                 </Layout>
-            </>
+            </div>
         )
     }
 }
