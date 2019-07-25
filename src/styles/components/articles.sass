@@ -45,3 +45,20 @@
     &__tags
       display: flex
       flex-wrap: wrap
+
++media-breakpoint-up(sm)
+  .articles-container
+    display: flex
+    flex-direction: column
+    align-items: center
+    .article
+      width: 100%
+      max-width: 790px
+      display: flex
+
+      &__image
+        min-width: 200px
+        width: 200px
+
+      &__content
+        padding: 15px

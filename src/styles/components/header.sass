@@ -3,11 +3,27 @@
   height: 60px
   display: flex
   align-items: center
-  justify-content: space-between
+  justify-content: center
   padding-left: 10px
   padding-right: 10px
   background-color: $color-dark-blue
 
+  &__content-container
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: space-between
+
   &__left-side
     h1
       color: $color-white
+
++media-breakpoint-up(md)
+  .header
+    margin-bottom: 15px
+
+    &__content-container
+      width: 780px
+    &__right-side
+      display: none
+
