@@ -16,7 +16,9 @@ class Layout extends Component {
         return (
             <div className={bemCx('layout', modifiers)}>
                 { displayHeader && <Header {...props} pageName={pageName} />}
-                {this.props.children}
+                <div className='layout__main'>
+                    {this.props.children}
+                </div>
                 { displayFooter && <Footer {...props} pageName={pageName} />}
             </div>
         )
