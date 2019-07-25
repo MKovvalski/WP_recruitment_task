@@ -13,6 +13,6 @@ export const fetchData = (query, variables) => client.request(query, variables)
 
 export const fetchCategoryTags = cid => fetchData(categoryTagsQuery, { t: ['Article'], cid })
 
-export const fetchArticles = (cid, tags) => fetchData(articlesQuery, { t: ['Article'], cid, tags })
+export const fetchArticles = (params) => fetchData(articlesQuery, { t: ['Article'], ...params })
 
 export const fetchSingleArticle = url => fetchData(singleArticleQuery, { url })

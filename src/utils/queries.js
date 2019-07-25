@@ -7,13 +7,15 @@ export const categoryTagsQuery = `
 `
 
 export const articlesQuery = `
-    query getArticles ($t: [ArticleType]!, $cid: Int!, $tags: [String]) {
-        articles (t: $t, cid: $cid, tags: $tags) {
+    query getArticles ($t: [ArticleType]!, $cid: Int!, $tags: [String], $offset: Int, $limit: Int) {
+        articles (t: $t, cid: $cid, tags: $tags, offset: $offset, limit: $limit) {
             title
             author {
                 name
             }
+            url
             id
+            tags
             img {
                 title
                 url

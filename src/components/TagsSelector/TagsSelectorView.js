@@ -6,6 +6,7 @@ import AsideControls from '../AsideControls';
 
 const tagsSelectorView = ({ tagsArray, activeTagsArray, toggleTag, controls, loadingState }) => {
     const shouldDisplay = state => loadingState === state
+
     return (
         <PageSection
             title='Wybierz Tagi'

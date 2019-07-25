@@ -1,0 +1,47 @@
+.articles-container
+  width: 100%
+  padding: 10px 10px
+  min-height: calc(100vh - 120px)
+
+  &__load-more
+    width: 100%
+    padding: 10px
+    font-size: 20px
+    color: $color-white
+    text-align: center
+    background-color: $border-color-light-grey
+    border: 1px solid $border-color-light-grey
+    border-radius: 10px
+    cursor: pointer
+
+  .article
+    margin-bottom: 10px
+    box-shadow: 0 5px 10px 0 $article-box-shadow-color-grey
+    border: 1px solid $border-color-light-grey
+    border-radius: 10px
+    overflow: hidden
+
+    &__image
+      min-height: 198px
+      object-fit: cover
+      background: $font-color-light-grey
+
+    &__content
+      padding: 7px 10px 15px
+
+    &__link-wrapper
+      cursor: pointer
+      text-decoration: none
+
+    &__title
+      font-size: 24px
+      font-weight: 500
+      color: $font-color-base-grey
+      margin-bottom: 10px
+
+      &:hover
+        color: $font-color-lighter-grey
+
+    &__tags
+      display: flex
+      flex-wrap: wrap

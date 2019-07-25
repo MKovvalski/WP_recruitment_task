@@ -39,7 +39,6 @@ class TagsGql extends Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.category !== this.props.category) {
             this.updateLoadingState('loading')
-            this.props.changeTagsState([])
             this.fetchTagsData()
         }
     }

@@ -34,7 +34,7 @@ const formatTags = data => segregateByMostPopular(unifyTagsArray(data))
 class TagsContainer extends Component {
     state = { tagsArray: [] }
 
-    setTagArrayState = newArrayState => this.setState({ tagsArray: newArrayState })
+    setTagArrayState = (newArrayState = []) => this.setState({ tagsArray: newArrayState })
 
     toggleTagInArrayState = tagString => {
         const { tagsArray } = this.state
@@ -49,23 +49,25 @@ class TagsContainer extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.category !== this.props.category) {
-            this.setTagArrayState([])
+            this.setTagArrayState()
         }
     }
 
     manageTagErasing = () => {
-        this.props.changeTagsState([])
-        this.setTagArrayState([])
+        if (this.state.tagsArray.length) {
+            this.props.updateParentTagsState()
+            this.setTagArrayState()
+        }
     }
 
     render() {
-        const { data : { articles = [] }, changeTagsState } = this.props
+        const { data : { articles = [] }, updateParentTagsState } = this.props
         const { tagsArray } = this.state
 
         const controls = [
             {
                 title: 'Zastosuj',
-                onClick: () => changeTagsState(tagsArray),
+                onClick: () => updateParentTagsState(tagsArray),
                 modifier: 'apply'
             },
             {

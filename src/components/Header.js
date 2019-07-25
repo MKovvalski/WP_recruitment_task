@@ -1,6 +1,5 @@
 import React from 'react'
 import bemCx from 'bem-modifiers'
-import WPLogo from '../assets/wp_logo.png'
 
 import SelectableTag from '../components/SelectableTag'
 import LinkWrapper from '../components/LinkWrapper'
@@ -15,9 +14,6 @@ const header = ({ pageName, toggleFilterMenu, modifiers  }) => {
     return (
         <div className={bemCx('header', [pageName, modifiers])}>
             <div className='header__left-side'>
-                <div className='header__logo'>
-                    <img src={WPLogo} alt='app_logo' />
-                </div>
                 <h1>Artykuły</h1>
             </div>
             <div className='header_right-side'>
