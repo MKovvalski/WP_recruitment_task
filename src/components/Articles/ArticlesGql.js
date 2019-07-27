@@ -9,23 +9,23 @@ const INITIAL_STATE = 'loading'
 
 const INITIAL_HAS_MORE_STATE = true
 
-const DEFAULT_ARTICLES_PER_PAGE = 15
-
 const INITIAL_PAGE_STATE = 1
+
+const DEFAULT_ARTICLES_PER_PAGE = 15
 
 const quantifyOffset = pageNum => (pageNum - 1) * DEFAULT_ARTICLES_PER_PAGE
 
 const hasMoreArticles = articlesCount => articlesCount % DEFAULT_ARTICLES_PER_PAGE === 0
+
+const hasMoreThanDefault = articlesCount => articlesCount >= DEFAULT_ARTICLES_PER_PAGE
 
 class ArticlesGql extends Component {
     state = {
         data: [],
         loadingState: INITIAL_STATE,
         currentPageNumber: INITIAL_PAGE_STATE,
-        hasMore: true,
+        hasMore: INITIAL_HAS_MORE_STATE,
     }
-
-    updateDataState = data => this.setState({ data })
 
     updateLoadingState = loadingState => this.setState({ loadingState })
 
@@ -39,27 +39,27 @@ class ArticlesGql extends Component {
         })
     )
 
-    fetchTagsData = async (fetchParams) => {
+    fetchArticlesData = async () => {
         const { cid, tags } = this.props
         let loadingState
 
         try {
-            const res = await fetchArticles({
+            const { articles} = await fetchArticles({
                 cid,
                 tags,
                 limit: DEFAULT_ARTICLES_PER_PAGE,
-                ...fetchParams
             })
 
-            const resLength = res.articles.length
+            const articlesCount = articles.length
 
-            await this.updateDataState(res.articles)
-
-            if (resLength < DEFAULT_ARTICLES_PER_PAGE) {
-                await this.updateHasMoreState(false)
+            if (articlesCount) {
+                await this.setState({
+                    data: articles,
+                    hasMore: hasMoreThanDefault(articlesCount),
+                })
             }
 
-            loadingState = resLength ? 'success' : 'no-articles'
+            loadingState = articlesCount ? 'success' : 'no-articles'
 
         } catch (err) {
             logError(err.message)
@@ -71,7 +71,7 @@ class ArticlesGql extends Component {
 
     initiateReFetch = async () => {
         await this.reinitializeState()
-        this.fetchTagsData()
+        this.fetchArticlesData()
     }
 
     fetchMorePages = async () => {
@@ -81,24 +81,21 @@ class ArticlesGql extends Component {
         const newPageNum = currentPageNumber + 1
 
         try {
-            const res = await fetchArticles({
+            const { articles } = await fetchArticles({
                 cid,
                 tags,
                 offset: quantifyOffset(newPageNum),
                 limit: DEFAULT_ARTICLES_PER_PAGE,
             })
 
-            const resLength = res.articles.length
+            const articlesCount = articles.length
 
-            if (resLength) {
+            if (articlesCount) {
                 this.setState({
-                    data:[ ...data, ...res.articles ],
-                    currentPageNumber: newPageNum
+                    data:[ ...data, ...articles ],
+                    currentPageNumber: newPageNum,
+                    hasMore: hasMoreThanDefault(articlesCount),
                 })
-            }
-
-            if (resLength < DEFAULT_ARTICLES_PER_PAGE) {
-                await this.updateHasMoreState(false)
             }
 
         } catch (err) {
@@ -110,14 +107,14 @@ class ArticlesGql extends Component {
 
     loadMorePages = () => {
         if (hasMoreArticles(this.state.data.length)) {
-            return this.fetchMorePages()
+            this.fetchMorePages()
         } else {
             this.updateHasMoreState(false)
         }
     }
 
     componentDidMount() {
-        this.fetchTagsData()
+        this.fetchArticlesData()
     }
 
     componentDidUpdate (prevProps, prevState, snapshot) {

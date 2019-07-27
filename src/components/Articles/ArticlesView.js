@@ -1,8 +1,8 @@
 import React from 'react'
 import SelectableTag from '../../components/SelectableTag'
-import Loader from "../Loader";
+import Loader from '../Loader'
 
-const Article = ({ title, img: { url = null, title: imgTitle }, tags = [], url: articleUrl }) => (
+const Article = ({ title, img: { url = null, title: imgTitle }, tags = [], url: articleUrl = null }) => (
     <div className='article'>
         <img
             className='article__image'

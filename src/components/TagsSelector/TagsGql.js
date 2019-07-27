@@ -9,7 +9,7 @@ const INITIAL_STATE = 'loading'
 
 class TagsGql extends Component {
     state = {
-        data: {},
+        data: [],
         loadingState: INITIAL_STATE
     }
 
@@ -20,9 +20,9 @@ class TagsGql extends Component {
     fetchTagsData = async () => {
         let loadingState
         try {
-            const res = await fetchCategoryTags(this.props.category)
-            await this.updateDataState(res)
-            loadingState = res.articles.length ? 'success' : 'no-tags'
+            const { articles } = await fetchCategoryTags(this.props.category)
+            await this.updateDataState(articles)
+            loadingState = articles.length ? 'success' : 'no-tags'
 
         } catch (err) {
             logError(err.message)
