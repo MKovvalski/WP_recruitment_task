@@ -60,14 +60,21 @@ class TagsContainer extends Component {
         }
     }
 
+    applyTagsAndCloseFilters = () => {
+        const { updateParentTagsState, closeFilters } = this.props
+
+        updateParentTagsState(this.state.tagsArray)
+        closeFilters()
+    }
+
     render() {
-        const { data : { articles = [] }, updateParentTagsState } = this.props
+        const { data = [] } = this.props
         const { tagsArray } = this.state
 
         const controls = [
             {
                 title: 'Zastosuj',
-                onClick: () => updateParentTagsState(tagsArray),
+                onClick: this.applyTagsAndCloseFilters,
                 modifier: 'apply'
             },
             {
@@ -79,7 +86,7 @@ class TagsContainer extends Component {
 
         return (
             <TagsSelectorView
-                tagsArray={formatTags(articles)}
+                tagsArray={formatTags(data)}
                 activeTagsArray={tagsArray}
                 toggleTag={this.toggleTagInArrayState}
                 controls={controls}

@@ -13,26 +13,28 @@ const shouldDisplay = page => SHOW_ON_PAGES.find(el => el === page)
 const header = ({ pageName, toggleFilterMenu, modifiers  }) => {
     return (
         <div className={bemCx('header', [pageName, modifiers])}>
-            <div className='header__content-container'>
-                <div className='header__left-side'>
-                    <h1>Artykuły</h1>
-                </div>
-                <div className='header__right-side'>
-                    {shouldDisplay('index') &&
-                    <SelectableTag
-                        title='filtruj'
-                        onClick={toggleFilterMenu}
-                        modifiers={['filter', 'header']}
-                    />
-                    }
-                    {shouldDisplay('article') &&
-                    <LinkWrapper>
+            <div className='header__sticky-wrapper'>
+                <div className='header__content-container'>
+                    <div className='header__left-side'>
+                        <h1>Artykuły</h1>
+                    </div>
+                    <div className='header__right-side'>
+                        {shouldDisplay('index') &&
                         <SelectableTag
-                            title='Powrót'
-                            modifiers={['filter', 'header', 'home']}
+                            title='filtruj'
+                            onClick={toggleFilterMenu}
+                            modifiers={['filter', 'header']}
                         />
-                    </LinkWrapper>
-                    }
+                        }
+                        {shouldDisplay('article') &&
+                        <LinkWrapper>
+                            <SelectableTag
+                                title='Powrót'
+                                modifiers={['filter', 'header', 'home']}
+                            />
+                        </LinkWrapper>
+                        }
+                    </div>
                 </div>
             </div>
         </div>

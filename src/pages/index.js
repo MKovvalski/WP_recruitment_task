@@ -28,18 +28,30 @@ class IndexPage extends Component {
 
     changeTagsState = activeTags => this.setState({ activeTags })
 
+    scrollToArticles = () => {
+        if (this.scrollAnchor && this.windowAboveMediumBreakpoint()) {
+            this.scrollAnchor.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+            })
+        }
+    }
+
     updateTagsState = activeTags => {
 
         if (this.state.activeTags !== activeTags && activeTags) {
             this.changeTagsState(activeTags)
+            this.scrollToArticles()
         }
 
         if (!activeTags && this.state.activeTags.length) {
             this.changeTagsState(INITIAL_TAGS_STATE)
+            this.scrollToArticles()
         }
+
     }
 
-
+    windowAboveMediumBreakpoint = ()=> window.innerWidth >= 768
 
     render () {
         const { category, filterMenuOpen: active, activeTags } = this.state
@@ -60,10 +72,12 @@ class IndexPage extends Component {
                         />
                         <TagsSelector
                             category={category}
+                            closeFilters={this.toggleFilterMenuState}
                             updateParentTagsState={this.updateTagsState}
                             closeFilterMenu={this.toggleFilterMenuState}
                         />
                     </div>
+                    <div ref={ref => this.scrollAnchor = ref} />
                     <ArticlesList
                         cid={category}
                         tags={activeTags}
