@@ -8,7 +8,7 @@ then
 
 then
 
-open localhost:3000
+### open localhost:3000
 
 
 ## Project description
