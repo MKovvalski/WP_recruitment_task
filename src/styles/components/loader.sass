@@ -1,22 +1,21 @@
 .loader
-  width: 100%
-  height: 100%
-  min-height: 200px
-  display: flex
-  justify-content: center
   align-items: center
+  display: flex
+  height: 100%
+  justify-content: center
+  min-height: 200px
+  width: 100%
 
   &__circle
-    border: 8px solid #f3f3f3
-    border-top: 8px solid $color-light-blue
-    border-radius: 50%
-    width: 80px
-    height: 80px
     animation: spin 2s linear infinite
+    border: 8px solid #f3f3f3
+    border-radius: 50%
+    border-top: 8px solid $color-light-blue
+    height: 80px
+    width: 80px
 
 @keyframes spin
   0%
     transform: rotate(0deg)
   100%
     transform: rotate(360deg)
-

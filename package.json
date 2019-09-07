@@ -13,7 +13,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged && npm run lint:fix && npm run lint"
     }
   },
   "lint-staged": {
@@ -26,7 +26,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "sass-test": "sass-lint -config sass-lint.json './src/styles/**/**/*.sass' -v -q"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -42,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "sass-lint": "^1.13.1"
   }
 }
