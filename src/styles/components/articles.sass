@@ -1,30 +1,30 @@
 .articles-container
-  width: 100%
-  padding: 10px 10px
   min-height: calc(100vh - 120px)
+  padding: 10px 10px
+  width: 100%
 
   &__load-more
-    width: 100%
-    padding: 10px
-    font-size: 20px
-    color: $color-white
-    text-align: center
     background-color: $border-color-light-grey
     border: 1px solid $border-color-light-grey
     border-radius: 10px
+    color: $color-white
     cursor: pointer
+    font-size: 20px
+    padding: 10px
+    text-align: center
+    width: 100%
 
   .article
-    margin-bottom: 10px
-    box-shadow: 0 5px 10px 0 $article-box-shadow-color-grey
     border: 1px solid $border-color-light-grey
     border-radius: 10px
+    box-shadow: 0 5px 10px 0 $article-box-shadow-color-grey
+    margin-bottom: 10px
     overflow: hidden
 
     &__image
+      background: $font-color-light-grey
       min-height: 198px
       object-fit: cover
-      background: $font-color-light-grey
 
     &__content
       padding: 7px 10px 15px
@@ -34,9 +34,9 @@
       text-decoration: none
 
     &__title
+      color: $font-color-base-grey
       font-size: 24px
       font-weight: 500
-      color: $font-color-base-grey
       margin-bottom: 10px
 
       &:hover
@@ -48,13 +48,14 @@
 
 +media-breakpoint-up(sm)
   .articles-container
+    align-items: center
     display: flex
     flex-direction: column
-    align-items: center
+
     .article
-      width: 100%
-      max-width: 790px
       display: flex
+      max-width: 790px
+      width: 100%
 
       &__image
         min-width: 200px
@@ -62,3 +63,7 @@
 
       &__content
         padding: 15px
+
+
+#epnis
+  color: #000

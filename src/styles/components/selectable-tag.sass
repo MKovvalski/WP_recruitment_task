@@ -1,54 +1,54 @@
 .selectable-tag
-  width: fit-content
-  padding: 4px 5px
+  background-color: $color-white
   border: 2px solid $color-light-blue
   border-radius: 6px
   color: $color-light-blue
-  background-color: $color-white
   cursor: pointer
   font-size: 16px
   line-height: 1
-  white-space: nowrap
+  padding: 4px 5px
   transition: color .3s, background-color .3s
+  white-space: nowrap
+  width: fit-content
 
   &--active
-    color: $color-white
     background-color: $color-light-blue
+    color: $color-white
 
   &--category,
   &--tags
-    margin-right: 7px
     margin-bottom: 7px
+    margin-right: 7px
 
   &--apply
-    color: $color-white
     background-color: $font-color-lighter-grey
     border-color: $font-color-lighter-grey
+    color: $color-white
     margin-right: 10px
 
   &--eraser
-    color: $color-white
     background-color: $color-dark-red
     border-color: $color-dark-red
+    color: $color-white
 
   &--filter
-    color: $font-color-base-grey
     border-color: $font-color-base-grey
+    color: $font-color-base-grey
 
   &--header
-    font-size: 18px
-    color: $font-color-lighter-grey
     border-color: $font-color-lighter-grey
+    color: $font-color-lighter-grey
+    font-size: 18px
     margin-top: 2px
 
   &--home
     text-decoration: none
 
   &--in-article
-    font-size: 12px
-    margin-right: 5px
-    margin-bottom: 5px
     border: 1px solid $color-light-blue
+    font-size: 12px
+    margin-bottom: 5px
+    margin-right: 5px
 
 +media-breakpoint-up(md)
   .selectable-tag
@@ -56,5 +56,5 @@
     &--category,
     &--tags
       &:hover
-        color: $color-white
         background-color: $color-light-blue
+        color: $color-white
