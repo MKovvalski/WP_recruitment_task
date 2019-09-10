@@ -1,0 +1,99 @@
+files:
+  include: "./src/styles/**/*.sass"
+  exclude: "./node_modules"
+
+rules:
+  extends-before-mixins: 2
+  extends-before-declarations: 2
+  placeholder-in-extend: 2
+  declarations-before-nesting: 2
+  force-attribute-nesting: 2
+  force-element-nesting: 2
+  force-pseudo-nesting: 2
+  no-duplicate-properties: 2
+  no-empty-rulesets: 2
+  no-mergeable-selectors: 2
+  no-misspelled-properties: 2
+  no-trailing-whitespace: 2
+  no-trailing-zero: 2
+  no-transition-all: 2
+  no-url-domains: 2
+  one-declaration-per-line: 2
+  shorthand-values: 2
+  no-ids: 2
+  no-warn: 1
+  no-debug: 1
+  no-important: 2
+  no-color-keywords: 2
+  no-invalid-hex: 2
+  mixins-before-declarations:
+    - 2
+    -
+      exclude:
+        - breakpoint
+        - mq
+  hex-notation:
+    - 2
+    -
+      style: lowercase
+  quotes:
+    - 2
+    -
+      style: single
+  indentation:
+    - 2
+    -
+      size: 2
+  space-after-colon:
+    - 2
+    -
+      include: true
+  space-around-operator:
+    - 2
+    -
+      include: true
+  final-newline:
+    - 2
+    -
+      include: true
+  class-name-format:
+    - 2
+    -
+      convention: hyphenatedbem
+      allow-leading-underscore: false
+  empty-line-between-blocks:
+    - 2
+    -
+      include: true
+      allow-single-line-rulesets: false
+  leading-zero:
+    - 2
+    -
+      include: false
+  property-sort-order:
+    - 1
+    -
+      order:
+        - position
+        - width
+        - height
+        - display
+        - margin
+        - padding
+      ignore-custom-properties: true
+  clean-import-paths:
+    - 2
+    -
+      leading-underscore: false
+      filename-extension: false
+  variable-name-format:
+    - 2
+    -
+      allow-leading-underscore: false
+      convention: hyphenatedlowercase
+  variable-for-property:
+    - 2
+    -
+      properties:
+        - color
+        - background-color
